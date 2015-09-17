@@ -1,4 +1,4 @@
-public class No_1TwoSum {
+public class Solution {
 	
 	 public static int[] twoSum(int[] nums, int target) {
 		 HashMap<Integer, Integer>map=new HashMap<Integer, Integer>();
