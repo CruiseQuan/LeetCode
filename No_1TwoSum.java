@@ -1,7 +1,3 @@
-package LeetCode;
-
-import java.util.HashMap;
-
 public class No_1TwoSum {
 	
 	 public static int[] twoSum(int[] nums, int target) {
