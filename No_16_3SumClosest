@@ -1,0 +1,30 @@
+import java.util.Arrays;
+public class Solution {
+    public int threeSumClosest(int[] num, int target) {
+       int result=0;
+       int temp=0;
+		 Arrays.sort(num);
+		 int difference=Integer.MAX_VALUE;
+		for(int i=0;i<num.length-2;i++){
+		    int begin=i+1;
+		    int end=num.length-1;
+		    while(begin<end){
+		        	result=num[i]+num[begin]+num[end];
+		    	if(Math.abs(result-target)<difference){
+				  difference=Math.abs(result-target);
+				  temp=result;
+		    	}
+			
+				if(result==target)
+					return result;
+				else if(result<target)
+					begin++;
+				else 
+					end--;
+		    }
+					
+		}			
+		 return temp;
+	        
+    }
+}
