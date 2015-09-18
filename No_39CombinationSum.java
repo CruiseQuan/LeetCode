@@ -16,7 +16,8 @@ public class Solution {
 	        	   arrayList.add(candidates[i]);
 	        	   combinationSum(candidates, target-candidates[i], i, ret, arrayList);
 	        	   arrayList.remove(arrayList.size()-1);
-	        	}
+	        	}else
+	        	    break;//因为数组非降序
 	        }
 	        	
 	    }
