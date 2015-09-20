@@ -6,18 +6,18 @@ public class Solution {
 	        return ret;
 	    }
          public void combinationSum(int[] candidates, int target,int index,List<List<Integer>>ret,List<Integer>list) {
-	       ArrayList<Integer>arrayList=new ArrayList<Integer>(list);
         	 if(target==0){
-	        	ret.add(arrayList);
+	        	ret.add(new ArrayList<Integer>(list));
 	        	return;
 	        }
 	        for(int i=index;i<candidates.length;i++){
 	        	if(target>=candidates[i]){
-	        	   arrayList.add(candidates[i]);
-	        	   combinationSum(candidates, target-candidates[i], i, ret, arrayList);
-	        	   arrayList.remove(arrayList.size()-1);
+	        	   list.add(candidates[i]);
+	        	   combinationSum(candidates, target-candidates[i], i, ret, list);
+	        	  list.remove(list.size()-1);
 	        	}else
 	        	    break;//因为数组非降序
+	        	
 	        }
 	        	
 	    }
