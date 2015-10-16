@@ -11,14 +11,12 @@ public class Solution {
 	    		 int index=map.get(find);
 	    		 if(index==i+1)//是自己本身
 	    			 continue;
-	    		 else if(index<i+1){
-	    			 ret[0]=index;
-	    			 ret[1]=i+1;
-	    		 }else{
+	    		 else{
 	    			 ret[0]=i+1;
 	    			 ret[1]=index;
+	    			 break;
 	    		 }
-	    		 break;
+	    		 
 	    	 }
 	     }
 	     return ret;
