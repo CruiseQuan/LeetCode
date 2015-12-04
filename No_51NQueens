@@ -1,0 +1,49 @@
+public class Solution {
+    public List<String[]> solveNQueens(int n) {
+         List<String[]>result=new ArrayList<String[]>();
+	  int []answer=new int [n+1];//保存每行的皇后所在的列号
+	  for(int i=1;i<=n;i++)
+		  answer[i]=0;
+	  int i=1;
+	  while(i>0){//处理第i行皇后的位置
+		while(answer[i]<n){
+			  answer[i]++;			  
+			  if(testValid(answer,i)){//如果这个列号可行				 
+				  if(i==n){//正确解,加入集合
+				addAnswer(answer,result);
+				  break; 
+			     }else{
+				  //如果部分解即这个列号有效，那寻找下一行皇后的列号
+				  i=i+1; 
+			  }		
+		    }
+		 }
+		  answer[i]=0;//如果这一行皇后尝试了所有剩余列号都不成立，那么回溯到上一行皇后，
+		  i--;
+	  }	
+	  return result;
+    }
+    public static boolean testValid(int []answer,int i){//判断条件，是否有两个皇后在对角线
+    	for(int j=1;j<i;j++)//列号测试
+    		if(answer[j]==answer[i])
+    			return false;
+    	for(int j=1;j<i;j++)//对角线测试
+    		if(answer[j]-answer[i]==j-i||answer[j]-answer[i]==i-j)
+    			return false;
+    	return true;
+    }
+    public static void addAnswer(int []answer,List<String[]>result){//答案转换为string数组
+    	String []string=new String[answer.length-1];
+    	for(int i=1;i<answer.length;i++){
+    		String s="";
+   		  for(int j=0;j<answer[i]-1;j++)
+    		s+='.';
+   		  s+='Q';
+   		  for(int j=0;j<answer.length-1-answer[i];j++)
+     		s+='.'; 
+   		  string[i-1]=s;
+    	}
+    	result.add(string);
+    }
+    
+}
