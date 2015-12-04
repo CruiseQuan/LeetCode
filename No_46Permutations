@@ -1,0 +1,26 @@
+public class Solution {
+    public  List<List<Integer>> permute(int[] num) {
+	   List<List<Integer>> result=new ArrayList<List<Integer>>();
+	   return permuteHelp(result,num, 0, num.length-1);
+    }
+   public  List<List<Integer>> permuteHelp(List<List<Integer>>result,int[] num,int begin,int end) {
+	   if(begin==end){
+		   List<Integer>temp=new ArrayList<Integer>();
+		   for(int i=0;i<=end;i++)
+		      temp.add(num[i]);
+		   result.add(temp);
+	   }else{
+		   for(int i=begin;i<=end;i++){
+			swap(num, begin, i);
+			  permuteHelp(result,num, begin+1, end);
+			swap(num, begin, i);
+		   }
+	   }
+        return result;
+    }
+   public void swap(int[]num,int i,int j){
+	   int temp=num[i];
+		  num[i]=num[j];
+		  num[j]=temp;
+   }
+}
