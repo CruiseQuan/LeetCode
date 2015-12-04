@@ -1,0 +1,41 @@
+public class Solution {
+    public List<String> anagrams(String[] strs) {
+      List<String>result=new ArrayList<String>();      
+        HashMap<String, Integer>anagrams=new HashMap<String, Integer>();
+        char[]charAnswer={'a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+        		'o','p','q','r','s','t','u','v','w','x','y','z'};
+        List<Integer>emptyList=new ArrayList<Integer>();      
+        for(int i=0;i<strs.length;i++){
+         int []anagramArray=new int [26];
+        	if(strs[i].equals("")){
+        	    emptyList.add(i);
+        	}else{
+        	 
+        	 for(int j=0;j<strs[i].length();j++){
+        		anagramArray[strs[i].charAt(j)-'a']++;
+        	   }
+        	 String answer="";
+        	 for(int k=0;k<26;k++)
+        		 if(anagramArray[k]!=0){
+        			answer+=anagramArray[k];
+        			 answer+=charAnswer[k];
+        		 }       	
+        	if(anagrams.containsKey(answer)){
+        		int index=anagrams.get(answer);
+        		if(index!=-1){
+        			result.add(strs[index]);
+        			anagrams.replace(answer, -1);
+        		}
+        		result.add(strs[i]);               		
+        	}else{
+        		anagrams.put(answer, i);
+        	}
+         }
+        }
+        if(emptyList.size()>1){
+        	for(int i=0;i<emptyList.size();i++)
+        		result.add(strs[emptyList.get(i)]);
+        }
+        return result;
+    }
+}
