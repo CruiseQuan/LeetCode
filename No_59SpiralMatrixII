@@ -1,0 +1,51 @@
+/*
+Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+For example,
+Given n = 3,
+
+You should return the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+*/
+public class Solution {
+     public  int[][] generateMatrix(int n) {
+           if(n==0){
+    	   int [][]matrix={};
+    	   return matrix;
+           }
+    	int [][]matrix=new int [n][n]; 
+    	generateMatrixHelp(matrix, n, n, 1);
+       return matrix;
+    }
+    public  void generateMatrixHelp(int[][] matrix,int row,int col,int number) {
+    
+    	 int rowIndex=(matrix.length-row)/2;
+     	 int colIndex=(matrix[0].length-col)/2;
+     	 if(row==1){ //单行
+     		for(int i=0;i<col;i++){
+      			 matrix[rowIndex][colIndex+i]=number++;
+      		 } 		
+      		 return;
+     	 }
+   	    if(col==1){//单列
+   		 for(int i=0;i<row;i++){
+   			 matrix[rowIndex+i][colIndex]=number++;
+   		 } 		
+   		 return;
+   	    }   	   
+   	   for(int j=0;j<col;j++)
+   		  matrix[rowIndex][colIndex+j]=number++;
+   	   for(int j=0;j<row-1;j++)
+   		  matrix[rowIndex+1+j][colIndex+col-1]=number++;
+   	   for(int j=colIndex+col-2;j>=colIndex;j--)
+   		   matrix[rowIndex+row-1][j]=number++;
+   	   for(int j=rowIndex+row-2;j>=rowIndex+1;j--)
+   		   matrix[j][colIndex]=number++;
+   	   if(row>2&&col>2)
+   		generateMatrixHelp(matrix, row-2, col-2,number);
+   }
+}
