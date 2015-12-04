@@ -1,0 +1,35 @@
+public class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer>result=new ArrayList<Integer>();
+        if(matrix.length==0)
+        return result;
+    	spiralOrderHelp(matrix, result, matrix.length, matrix[0].length);
+    	 return result;
+    }
+    public void spiralOrderHelp(int[][] matrix,List<Integer>result,int row,int col) {
+    	 int rowIndex=(matrix.length-row)/2;
+     	 int colIndex=(matrix[0].length-col)/2;
+     	 if(row==1){ //单行
+     		for(int i=0;i<col;i++){
+      			 result.add(matrix[rowIndex][colIndex+i]);
+      		 } 		
+      		 return;
+     	 }
+   	    if(col==1){//单列
+   		 for(int i=0;i<row;i++){
+   			 result.add(matrix[rowIndex+i][colIndex]);
+   		 } 		
+   		 return;
+   	    }   	   
+   	   for(int j=0;j<col;j++)
+   		   result.add(matrix[rowIndex][colIndex+j]);
+   	   for(int j=0;j<row-1;j++)
+   		   result.add(matrix[rowIndex+1+j][colIndex+col-1]);
+   	   for(int j=colIndex+col-2;j>=colIndex;j--)
+   		   result.add(matrix[rowIndex+row-1][j]);
+   	   for(int j=rowIndex+row-2;j>=rowIndex+1;j--)
+   		   result.add(matrix[j][colIndex]);
+   	  if(row>2&&col>2)
+   	      spiralOrderHelp(matrix, result, row-2, col-2);
+   }
+}
